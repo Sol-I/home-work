@@ -27,7 +27,22 @@ class CalculatorTest {
     }
 
     @Test
-    void classHasSevenMethods(){
-        assertEquals(7,Calculator.class.getMethods().length-Object.class.getMethods().length);
+    void getPow() {
+        assertEquals(8, Calculator.getPow(2, 3));
+    }
+
+    @Test
+    void getMax() {
+        assertEquals(9, Calculator.getMax(9, 3));
+    }
+
+    @Test
+    void getMin() {
+        assertEquals(3, Calculator.getMin(9, 3));
+    }
+
+    @Test
+    void classHasSevenMethods() {
+        assertEquals(7, Calculator.class.getMethods().length - Object.class.getMethods().length);
     }
 }
