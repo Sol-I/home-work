@@ -1,20 +1,21 @@
 package com.sbrf.reboot.calculator;
 
 public class Calculator {
-    public static int getAddition(int i, int i1) {
+    public static double getAddition(double i, double i1) {
         return i + i1;
     }
 
-    public static int getSubtraction(int i, int i1) {
+    public static double getSubtraction(double i, double i1) {
         return i - i1;
     }
 
-    public static int getMultiplication(int i, int i1) {
+    public static double getMultiplication(double i, double i1) {
         return i * i1;
     }
 
-    public static double getDivision(int i, int i1) {
-        return (double) i / i1;
+    public static double getDivision(double i, double i1) {
+        if (i1==0) throw new ArithmeticException();
+        else return i / i1;
     }
 
     public static double getPow(double i, double i1) {
@@ -25,7 +26,8 @@ public class Calculator {
         return Math.max(i, i1);
     }
 
-    public static int getMin(int i, int i1) {
-        return Math.min(i, i1);
+    public static boolean isOdd(int i) {
+        return i % 2 == 1;
     }
+
 }
