@@ -1,4 +1,4 @@
-package com.sbrf.reboot.service;
+package com.sbrf.reboot.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,5 +6,5 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class Account {
-    private final String num;
+    private final String number;
 }
