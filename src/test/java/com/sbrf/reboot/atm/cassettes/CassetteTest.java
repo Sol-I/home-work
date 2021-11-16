@@ -1,5 +1,7 @@
 package com.sbrf.reboot.atm.cassettes;
 
+import com.sbrf.reboot.atm.banknote.Banknote;
+import com.sbrf.reboot.atm.cassette.Cassette;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
