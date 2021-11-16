@@ -40,7 +40,7 @@ class AccountServiceTest {
     }
 
     @Test
-    void bookNotExist()  {
+    void bookNotExist()  throws FileNotFoundException {
         Set<Account> accounts = new HashSet();
         accounts.add(new Account("ACC1234NUM"));
 

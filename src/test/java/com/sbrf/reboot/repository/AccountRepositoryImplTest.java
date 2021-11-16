@@ -40,11 +40,10 @@ class AccountRepositoryImplTest {
 
     @Test
     void failGetAllAccountsByClientId() {
-        assertThrows(FileNotFoundException.class, () -> new AccountRepositoryImpl("somePath"));
-//        accountRepository = new AccountRepositoryImpl("somePath");
-//        assertThrows(FileNotFoundException.class, () -> {
-//            accountRepository.getAllAccountsByClientId(1L);
-//        });
+        accountRepository = new AccountRepositoryImpl("somePath");
+        assertThrows(FileNotFoundException.class, () -> {
+            accountRepository.getAllAccountsByClientId(1L);
+        });
     }
 
 
