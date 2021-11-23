@@ -1,6 +1,7 @@
 package com.sbrf.reboot.utils;
 
 import com.sbrf.reboot.dto.Account;
+import com.sbrf.reboot.repository.AccountUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -45,5 +46,25 @@ class AccountUtilsTest {
         Assertions.assertEquals(2L, accounts.get(1).getId());
         Assertions.assertEquals(LocalDate.now().minusDays(3), accounts.get(2).getCreateDate());
         Assertions.assertEquals(LocalDate.now().minusDays(1), accounts.get(3).getCreateDate());
+    }
+    @Test
+    void sortedByIdDateBalance() {
+        List<Account> accounts = new ArrayList<Account>() {{
+            add(Account.builder().id(3L).createDate(LocalDate.now().minusDays(1)).balance(BigDecimal.TEN).build());
+            add(Account.builder().id(3L).createDate(LocalDate.now().minusDays(3)).balance(BigDecimal.TEN).build());
+            add(Account.builder().id(2L).createDate(LocalDate.now()).balance(BigDecimal.TEN).build());
+            add(Account.builder().id(2L).createDate(LocalDate.now()).balance(BigDecimal.ONE).build());
+            add(Account.builder().id(2L).createDate(LocalDate.now()).balance(BigDecimal.ZERO).build());
+            add(Account.builder().id(1L).createDate(LocalDate.now().minusDays(4)).balance(BigDecimal.TEN).build());
+        }};
+
+        AccountUtils.sortedByIdDate(accounts);
+
+        Assertions.assertEquals(1L, accounts.get(0).getId());
+        Assertions.assertEquals(BigDecimal.ZERO, accounts.get(1).getBalance());
+        Assertions.assertEquals(BigDecimal.ONE, accounts.get(2).getBalance());
+        Assertions.assertEquals(BigDecimal.TEN, accounts.get(3).getBalance());
+        Assertions.assertEquals(LocalDate.now().minusDays(3), accounts.get(4).getCreateDate());
+        Assertions.assertEquals(LocalDate.now().minusDays(1), accounts.get(5).getCreateDate());
     }
 }
