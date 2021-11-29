@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 class AccountUtilsTest {
@@ -58,7 +57,7 @@ class AccountUtilsTest {
             add(Account.builder().id(1L).createDate(LocalDate.now().minusDays(4)).balance(BigDecimal.TEN).build());
         }};
 
-        AccountUtils.sortedByIdDate(accounts);
+        AccountUtils.sortedByIdDateBalance(accounts);
 
         Assertions.assertEquals(1L, accounts.get(0).getId());
         Assertions.assertEquals(BigDecimal.ZERO, accounts.get(1).getBalance());
