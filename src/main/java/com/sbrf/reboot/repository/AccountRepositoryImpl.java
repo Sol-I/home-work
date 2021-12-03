@@ -13,6 +13,11 @@ public class AccountRepositoryImpl implements AccountRepository {
     private final String fileSRC;
 
     @Override
+    public Set<Account> getAllAccounts() throws FileNotFoundException {
+        return new HashSet<>();
+    }
+
+    @Override
     public Set<Account> getAllAccountsByClientId(long l) throws FileNotFoundException {
         Map<Long, Set<Account>> repository = Loader.loadRepositoryFromFile(fileSRC);
         if (repository.containsKey(l)) return repository.get(l);

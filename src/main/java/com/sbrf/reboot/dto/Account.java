@@ -16,11 +16,12 @@ import java.time.LocalDate;
 public class Account implements Comparable<Account> {
     private String number;
     private Long id;
+    private Long clientId;
     private LocalDate createDate;
     private BigDecimal balance;
 
     public Account(String number) {
-        this(number, 0L, LocalDate.now(), BigDecimal.ZERO);
+        this(number, 0L, 0L, LocalDate.now(), BigDecimal.ZERO);
     }
 
     @Override

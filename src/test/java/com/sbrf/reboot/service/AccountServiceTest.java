@@ -10,6 +10,8 @@ import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -99,6 +101,32 @@ class AccountServiceTest {
 
         assertEquals(2, allAccountsByDateMoreThen.size());
         assertTrue(allAccountsByDateMoreThen.contains(account3));
+    }
+
+    @SneakyThrows
+    @Test
+    void getClientIdWithMaxContributions() {
+        Account account1 = Account.builder().clientId(1L).balance(BigDecimal.ONE).build();
+        Account account2 = Account.builder().clientId(2L).balance(BigDecimal.TEN).build();
+        Account account3 = Account.builder().clientId(1L).balance(BigDecimal.valueOf(7)).build();
+        Account account4 = Account.builder().clientId(2L).balance(BigDecimal.ONE).build();
+        Account account5 = Account.builder().clientId(3L).balance(BigDecimal.valueOf(11)).build();
+
+        Set<Account> accounts = new HashSet() {{
+            add(account1);
+            add(account2);
+            add(account3);
+            add(account4);
+            add(account5);
+        }};
+
+        when(accountRepository.getAllAccounts()).thenReturn(accounts);
+
+        Set clientIdWithMaxContributions = accountService.getClientIdWithMaxContributions();
+
+        assertTrue(clientIdWithMaxContributions.contains(2L));
+        assertTrue(clientIdWithMaxContributions.contains(3L));
+        assertEquals(2, clientIdWithMaxContributions.size());
     }
 
 }
