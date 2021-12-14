@@ -1,4 +1,4 @@
-package com.sbrf.reboot.repository;
+package utils;
 
 import com.sbrf.reboot.dto.Account;
 
